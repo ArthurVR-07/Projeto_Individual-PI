@@ -58,6 +58,16 @@ body{
 /* Seção Hero */
 .hero{
     padding: 0 8% 0 8%;
+    background-image: url("../assets/imgs/bg_home.jpg");
+    background-size: cover;
+}
+
+.container_geral{
+    margin: auto;
+    width: fit-content;
+    padding: 0 4% 0 4%;
+    border-radius: 1500px;
+    background-color: rgba(0, 0, 0, 0.20);
 }
 
 .titulo{
@@ -81,14 +91,14 @@ body{
 
 #subtitulo{
     font-family: 'Cinzel';
-    color: rgb(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 60px;
 }
 
 .desc{
     display: flex;
     justify-content: center;
-    color: rgb(255, 255, 255, 0.60);
+    color: rgba(255, 255, 255, 0.8);
     gap: 20px;
     margin-top: 30px;
     margin-bottom: 40px;
@@ -112,13 +122,7 @@ body{
     padding-bottom: 100px;
 }
 
-#botao_explorar_equipes{
-    border: 2px solid #4A0C14;
-    color: rgba(255, 255, 255, 0.50);
-    padding: 10px 20px 10px 20px;
-}
-
-#botao_armas_imperiais{
+#botao_hero{
     background-color: #BF1429;
     padding: 10px 20px 10px 20px;
     color: white;

@@ -14,13 +14,13 @@
 <body>
     <div class="header">
         <div class="logo">
-            <img src="./assets/icon/logo.png" alt="logo">
+            <a href=""><img src="./assets/icon/logo.png" alt="logo"></a>
         </div>
 
         <div class="navegacao">
-            <a href="" class="agora">Equipes</a>
-            <a href="">Armas Imperiais</a>
-            <a href="">Arcos</a>
+            <a href="#equipes">Equipes</a>
+            <a href="#armas_imperiais">Armas Imperiais</a>
+            <a href="#arcos_historia">Arcos</a>
             <a href="">DashBoard</a>
         </div>
 
@@ -31,6 +31,7 @@
     </div>
 
     <section class="hero">
+        <div class="container_geral">
         <div class="titulo">
             <span id="top">AKAME</span>
             <span id="bottom">GA KILL</span>
@@ -41,12 +42,13 @@
             <span id="frase">"Mesmo que minha mão fique manchada de sangue, vou continuar matando até que este mundo corrupto caia."</span>
         </div>
         <div class="botoes">
-            <a href="" id="botao_explorar_equipes" style="text-decoration: none;">EXPLORAR EQUIPES</a>
-            <a href="" id="botao_armas_imperiais" style="text-decoration: none;">ARMAS IMPERIAIS</a>
+            <a href="#equipes" id="botao_hero" style="text-decoration: none;">EXPLORAR EQUIPES</a>
+            <a href="#armas_imperiais" id="botao_hero" style="text-decoration: none;">ARMAS IMPERIAIS</a>
+        </div>
         </div>
     </section>
     
-    <section class="equipes">
+    <section class="equipes" id="equipes">
         <div class="titulo_secao">Escolha uma <span style="color: #E83248;">Equipe</span></div>
         
         <div class="container_equipes">
@@ -66,7 +68,7 @@
         </div>    
     </section>
 
-    <section class="armas_imperiais">
+    <section class="armas_imperiais" id="armas_imperiais">
         <div class="titulo_secao">Armas <span style="color: #e83248;">Imperiais</span></div>
 
         <div class="containers_armas_imperiais">
@@ -74,19 +76,19 @@
         <div class="conainer_arma">
             <div class="icone_arma">⚔️</div>
             <div class="nome_arma">Murasame</div>
-            <div class="arma_desc">Katana curvada que infecta a vítima com um veneno incurável em um único corte superficial. Não há cura conhecida para seu veneno. A Carta Trump ativa uma forma demoníaca de poder absoluto, transformando completamente o usuário.</div>
+            <div class="arma_desc">Katana curvada que infecta a vítima com um veneno incurável em um único corte superficial. Não há cura conhecida para seu veneno. O especial ativa uma forma demoníaca de poder absoluto, transformando completamente o usuário.</div>
         </div>
 
         <div class="conainer_arma">
             <div class="icone_arma">🧊</div>
             <div class="nome_arma">Demon's Extract</div>
-            <div class="arma_desc">Fluido demoníaco consumido por Esdeath que lhe concede controle absoluto sobre o gelo e a temperatura. Um caso único de Arma Imperial que é ingerida. Sua Carta Trump é capaz de parar o próprio fluxo do tempo.</div>
+            <div class="arma_desc">Fluido demoníaco consumido por Esdeath que lhe concede controle absoluto sobre o gelo e a temperatura. Um caso único de Arma Imperial que é ingerida. Seu especial é capaz de parar o próprio fluxo do tempo.</div>
         </div>
 
         <div class="conainer_arma">
             <div class="icone_arma">🛡️</div>
             <div class="nome_arma">Incursio</div>
-            <div class="arma_desc">Armadura evoluída criada a partir do dragão demoníaco Tyrant. Invoca uma cobertura protetora que pode se tornar invisível. Evolui e se adapta junto com seu usuário, tornando-se progressivamente mais poderosa com o tempo.</div>
+            <div class="arma_desc">Armadura evoluída criada a partir do dragão Tyrant. Invoca uma cobertura protetora que pode se tornar invisível. Evolui e se adapta junto com seu usuário, tornando-se progressivamente mais poderosa com o tempo.</div>
         </div>
 
         <div class="conainer_arma">
@@ -110,13 +112,13 @@
         <div class="conainer_arma">
             <div class="icone_arma">✂️</div>
             <div class="nome_arma">Extase</div>
-            <div class="arma_desc">Tesouras gigantes capazes de cortar qualquer material existente, seja físico ou espiritual. Possuem a capacidade única de destroçar outros Teigu, tornando-as extremamente perigosas em confrontos entre portadores de Armas Imperiais.</div>
+            <div class="arma_desc">Tesouras gigantes capazes de cortar qualquer material existente, seja físico ou espiritual. Possuem a capacidade única de destroçar outras armas imperiais, tornando-as extremamente perigosas em confrontos entre portadores de Armas Imperiais.</div>
         </div>
 
         <div class="conainer_arma">
             <div class="icone_arma">🌑</div>
             <div class="nome_arma">Yatsufusa</div>
-            <div class="arma_desc">Espada que permite ao usuário ressuscitar e controlar até oito corpos de inimigos mortos como marionetes. Os ressuscitados mantêm suas habilidades e Teigu originais, tornando a portadora uma força capaz de criar um exército só para si.</div>
+            <div class="arma_desc">Espada que permite ao usuário ressuscitar e controlar até oito corpos de inimigos mortos como marionetes. Os ressuscitados mantêm suas habilidades e armas originais, tornando a portadora uma força capaz de criar um exército só para si.</div>
         </div>
 
         <div class="conainer_arma">
@@ -128,7 +130,7 @@
         </div>
     </section>
 
-    <section class="arcos_historia">
+    <section class="arcos_historia" id="arcos_historia">
         <div class="titulo_secao">Arcos da <span style="color: #E83248;">História</span></div>
 
         <div class="containers_arcos_historia">
@@ -138,7 +140,7 @@
                 <div class="arco">
                     <p class="pre_titulo">arco inicial</p>
                     <h1 class="titulo_arco">A Chegada à Capital e a Night Raid</h1>
-                    <span class="desc_arco">Tatsumi, um jovem guerreiro do interior, chega à Capital sonhando em ganhar dinheiro para salvar sua aldeia que passa por dificuldades. Rapidamente descobre que a cidade é corrompida até o núcleo, e após uma série de revelações brutais sobre a crueldade do sistema imperial, decide se unir ao Night Raid — um grupo de assassinos que opera nas sombras contra o governo. É aqui que ele dá seus primeiros e sangrentos passos como executor da Frente Revolucionária.</span>
+                    <span class="desc_arco">Tatsumi, um jovem guerreiro do interior, chega à Capital sonhando em ganhar dinheiro para salvar sua aldeia que passa por dificuldades. Rapidamente descobre que a cidade é corrompida até o núcleo, e após uma série de revelações brutais sobre a crueldade do sistema imperial, decide se unir ao Night Raid, um grupo de assassinos que opera nas sombras contra o governo. É aqui que ele dá seus primeiros passos como Frente Revolucionária.</span>
                 </div>
             </div>
 
@@ -147,7 +149,7 @@
                 <div class="arco">
                     <p class="pre_titulo">arco da arena</p>
                     <h1 class="titulo_arco">O Torneio de Gladiadores</h1>
-                    <span class="desc_arco">Durante uma missão, Tatsumi é capturado e jogado em uma arena de combate forçado, onde gladiadores treinados lutam pela diversão dos nobres corruptos. Enquanto sobrevive às batalhas e forma laços inesperados com outros prisioneiros, o Night Raid planeja uma operação de resgate. O arco explora a brutalidade do entretenimento imperial e coloca Tatsumi diante de seus próprios limites como combatente.</span>
+                    <span class="desc_arco">Durante uma missão, Tatsumi é capturado e jogado em uma arena de combate forçado, onde gladiadores treinados lutam pela diversão dos nobres corruptos. Enquanto sobrevive às batalhas e forma laços inesperados com outros prisioneiros, a Night Raid planeja uma operação de resgate.</span>
                 </div>
             </div>
 
@@ -156,7 +158,7 @@
                 <div class="arco">
                     <p class="pre_titulo">arco dos jaegers</p>
                     <h1 class="titulo_arco">O Surgimento dos Jaegers</h1>
-                    <span class="desc_arco">A lendária General Esdeath retorna triunfante de uma campanha e recebe a missão de eliminar o Night Raid. Para isso, ela forma os Jaegers — um grupo de elite composto pelos guerreiros mais poderosos do Império, todos portadores de Armas Imperiais. O Night Raid enfrenta, pela primeira vez, um adversário à sua altura em termos de poder e organização. Batalhas intensas, mortes inesperadas e o surgimento de rivalidades pessoais marcam este ponto de virada da série.</span>
+                    <span class="desc_arco">A lendária General Esdeath retorna triunfante de uma campanha e recebe a missão de eliminar a Night Raid. Para isso, ela forma os Jaegers, um grupo de elite composto pelos guerreiros mais poderosos do Império, todos portadores de Armas Imperiais. A Night Raid enfrenta, pela primeira vez, um adversário à sua altura em termos de poder e organização.</span>
                 </div>
             </div>
 
@@ -165,7 +167,7 @@
                 <div class="arco">
                     <p class="pre_titulo">arco da revolução</p>
                     <h1 class="titulo_arco">A Marcha da Frente Revolucionária</h1>
-                    <span class="desc_arco">A Frente Revolucionária finalmente coloca seus exércitos em marcha rumo à Capital. O conflito escala para uma guerra total entre a resistência e as forças imperiais, com o Night Raid operando nos bastidores para eliminar alvos estratégicos. As perdas se acumulam dos dois lados, e membros queridos de ambas as facções chegam ao fim de sua jornada. A linha entre herói e vilão se dissolve à medida que todos lutam por aquilo em que acreditam.</span>
+                    <span class="desc_arco">A Frente Revolucionária finalmente coloca seus exércitos em marcha rumo à Capital. O conflito escala para uma guerra total entre a resistência e as forças imperiais, com a Night Raid operando nos bastidores para combater alvos estratégicos. As perdas se acumulam dos dois lados, e membros queridos de ambas as equipes chegam ao fim de sua jornada. A linha entre herói e vilão se dissolve à medida que todos lutam por aquilo em que acreditam.</span>
                 </div>
             </div>
 
@@ -174,7 +176,7 @@
                 <div class="arco">
                     <p class="pre_titulo">arco final</p>
                     <h1 class="titulo_arco">A Queda da Capital</h1>
-                    <span class="desc_arco">O arco mais devastador da série. A Capital é o campo de batalha do confronto definitivo entre todas as forças em jogo — os Revolucionários, o Exército Imperial, os Jaegers e o Night Raid. Sacrifícios extremos, duelos épicos e mortes que marcam profundamente o leitor e espectador definem este capítulo final. Akame e Esdeath travam o embate que determina o destino do Império. A vitória tem um custo que poucos estavam preparados para pagar.</span>
+                    <span class="desc_arco">O arco mais devastador da série. A Capital é o campo de batalha do confronto definitivo entre todas as forças em jogo, os Revolucionários, o Exército Imperial, os Jaegers e a Night Raid. Akame e Esdeath travam o embate que determina o destino do Império. A vitória tem um custo que poucos estavam preparados para pagar.</span>
                 </div>
             </div>
 

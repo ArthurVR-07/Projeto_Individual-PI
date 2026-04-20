@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     font-style: none;
+    background-color: black;
 }
 
 /* Header */
@@ -33,46 +34,70 @@ body{
     height: auto;
 }
 
-.paralogin_e_cadastro{
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    text-transform: uppercase;
-}
-
-.botao_login{
-    border: 2px solid #4A0C14;
-    padding: 10px 20px 10px 20px;
-}
-
-.botao_cadastro{
-    background-color: #BF1429;
-    padding: 10px 20px 10px 20px;
-}
-
-#texto_cadastro{
+.voltar_inicio a{
     color: white;
 }
 
 /* Seção de login / cadastro */
-
 .container{
     display: flex;
+    justify-content: center;
+    padding: 50px;
 }
 
 .decoracao{
     border: 1px solid #4A0C14;
+    background-color: #1F0912;
+    display: flex;
+    align-items: center;
 }
 
 .decoracao img{
-    height: 200px;
+    height: 400px;
 }
 
 .formulario{
     display: flex;
     flex-direction: column;
+    border: 1px solid #4A0C14;
+    padding: 2% 2% 2% 2%;
+    gap: 20px;
+    background-color: #111119;
 }
 
 .titulo{
+    font-family: 'cinzel';
+    font-size: 40px;
+    color: white;
+}
 
+.campo{
+    display: flex;
+    flex-direction: column;
+    color: rgba(255, 255, 255, 0.70);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+input{
+    background-color: #0D0D15;
+    border: 1px solid #1E1420;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+button{
+    border: none;
+    background-color: #BF1429;
+    color: white;
+    font-family: 'Cinzel';
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.campo_adicional{
+    display: flex;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.50);
 }
