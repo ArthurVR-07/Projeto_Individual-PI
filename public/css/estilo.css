@@ -12,6 +12,9 @@ body{
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid #4A0C14;
+    position: fixed;
+    width: 100%;
+    background-color: black;
 }
 
 .header a{
@@ -60,6 +63,7 @@ body{
     padding: 0 8% 0 8%;
     background-image: url("../assets/imgs/bg_home.jpg");
     background-size: cover;
+    height: 100vh;
 }
 
 .container_geral{
@@ -148,8 +152,8 @@ body{
 
 .container_equipe{
     border: 1px solid #4A0C14;
-    padding: 2% 4% 4% 4%;
-    width: 450px;
+    padding: 0 4% 4% 4%;
+    width: 400px;
 }
 
 .titulo_equipe{
@@ -158,9 +162,10 @@ body{
     font-size: 40px;
 }
 
-.texto_equipe{
-    color: rgb(255, 255, 255, 0.60);
-    font-size: 20px;
+#banner_equipe{
+    width: 350px;
+    height: 120px;
+    margin-bottom: 20px;
 }
 
 .enfeite_ver_personagens{

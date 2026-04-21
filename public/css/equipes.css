@@ -1,0 +1,122 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-style: none;
+    background-color: black;
+}
+
+/* Header */
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #4A0C14;
+    background-color: black;
+}
+
+.header a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.50);
+    font-family: 'cinzel';
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.navegacao{
+    display: flex;
+    gap: 30px;
+    text-transform: uppercase;
+}
+
+.logo img{
+    width: 120px;
+    height: auto;
+}
+
+.voltar_inicio a{
+    color: white;
+}
+
+/* Banner */
+.banner{
+    padding: 40px 8% 40px 8%;
+    display: flex;
+    color: white;
+    border-bottom: 1px solid #4A0C14;
+}
+
+.container_titulo{
+    width: 700px;
+}
+
+.titulo{
+    font-family: 'cinzel';
+    font-size: 80px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_desc{
+    display: flex;
+    flex-direction: row;
+}
+
+.enfeite{
+    width: 2px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.desc_titulo{
+    color: rgba(255, 255, 255, 0.60);
+}
+
+
+/* Membros */
+
+.membros_equipe{
+    padding: 50px 8% 100px 8%;
+}
+
+.titulo_membros{
+    font-family: 'cinzel';
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+
+.membros{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.container_membro{
+    width: 320px;
+    
+    background-color: #111119;
+    padding: 20px 3% 30px 3%;
+}
+
+.icone_membro{
+    height: 100px;
+    width: 100px;
+}
+
+.nome_membro{
+    color: white;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.arma_membro{
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.desc_membro{
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 16px;
+}
