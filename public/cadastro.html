@@ -118,6 +118,50 @@
       setInterval(sumirMensagem, 5000);
     }
 
+    if(nomeVar.length <= 1){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(O nome é pequeno demais)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    
+    if(!emailVar.includes('@') || !emailVar.includes('.')){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Email inválido)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    
+    if(senhaVar.length < 6){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(A senha deve ter mais de 6 caracteres)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    
+    if(senhaVar != confirmacaoSenhaVar){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(As senhas não coincidem)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
     // Verificando se o código de ativação é de alguma empresa cadastrada
     /*for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
       if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
@@ -151,10 +195,10 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
+          // cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          // mensagem_erro.innerHTML =
+            // "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";

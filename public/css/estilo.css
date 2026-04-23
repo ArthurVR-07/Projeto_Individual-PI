@@ -17,12 +17,18 @@ body{
     background-color: black;
 }
 
-.header a{
+.navegacao a{
     text-decoration: none;
     color: rgba(255, 255, 255, 0.50);
     font-family: 'cinzel';
     font-size: 12px;
     letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.navegacao a:hover{
+    color: white;
+    transform: translateY(-3px);
 }
 
 .navegacao{
@@ -45,16 +51,26 @@ body{
 
 .botao_login{
     border: 2px solid #4A0C14;
+    color: rgba(255, 255, 255, 0.50);
     padding: 10px 20px 10px 20px;
+    transition: 0.3s;
+}
+
+.botao_login:hover{
+    color: white;
+    transform: translateY(-5px);
 }
 
 .botao_cadastro{
     background-color: #BF1429;
+    color: white;
     padding: 10px 20px 10px 20px;
+    transition: transform 0.3s ease;
 }
 
-#texto_cadastro{
-    color: white;
+.botao_cadastro:hover{
+    transform: translateY(-5px);
+    color: rgba(255, 255, 255, 0.50);
 }
 
 
@@ -130,6 +146,11 @@ body{
     background-color: #BF1429;
     padding: 10px 20px 10px 20px;
     color: white;
+    transition: 0.3s;
+}
+
+#botao_hero:hover{
+    transform: translateY(-5px);
 }
 
 /* Seção Equipes */
@@ -176,10 +197,22 @@ body{
 
 #equipe_night_raid{
     background-color: #12121B;
+    transition: 0.3s;
+}
+
+#equipe_night_raid:hover{
+    background-color: #141420;
+    transform: scale(1.07); 
 }
 
 #equipe_jaegers{
     background-color: #160909;
+    transition: 0.3s;
+}
+
+#equipe_jaegers:hover{
+    background-color: #150D09;
+    transform: scale(1.07); 
 }
 
 #divisor_equipes{
@@ -207,6 +240,12 @@ body{
     width: 300px;
     height: 200px;
     border-top: 3px solid #4A0C14;
+    transition: 0.3s;
+}
+
+.conainer_arma:hover{
+    transform: translateY(-10px);
+    border-top: 3px solid #BF1429;
 }
 
 .icone_arma{
@@ -235,6 +274,15 @@ body{
     display: flex;
     flex-direction: row;
     border: 1px solid rgba(255, 255, 255, 0.10);
+    transition: 0.3s;
+}
+
+.container_individual:hover{
+    transform: translateX(30px);
+}
+
+.container_individual:hover .arco{
+    background-color: #16161F;
 }
 
 .numeracao{
@@ -283,6 +331,13 @@ footer a{
     text-decoration: none;
     font-family: 'cinzel';
     color: rgb(255, 255, 255, 0.60);
+    transition: 0.3s;
+    
+}
+
+footer a:hover{
+    color: white;
+    transform: translateY(-3px);
 }
 
 .containers_footer{
