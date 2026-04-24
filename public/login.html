@@ -46,18 +46,23 @@
 
       <div class="campo">
         <label for="email_input">Email</label>
-        <input type="text" id="email_input" placeholder="email@exemplo.com">
+        <div class="container_campo">
+            <input type="text" id="email_input" placeholder="email@exemplo.com">
+        </div>
       </div>
 
       <div class="campo">
         <label for="senha_input">Senha</label>
-        <input type="password" id="senha_input" placeholder="******">
+        <div class="container_campo ">
+            <input type="password" id="senha_input" placeholder="******">
+            <button onclick="visualizacao_senha()" id="olho_visualizacao"><img src="assets/icon/olho_aberto.png" alt="" id="olho"></button>
+        </div>
       </div>
 
-      <button onclick="entrar()">ENTRAR</button>
+      <button onclick="entrar()" class="botao_formulario">ENTRAR</button>
 
       <div class="campo_adicional">
-        <span>Novo por aqui? <a href="cadastro.html" style="text-decoration: none; color: #BF1429;">CADASTRE-SE</a></span>
+        <span>Novo por aqui? <a href="cadastro.html" style="text-decoration: none;" id="texto_href">CADASTRE-SE</a></span>
       </div>
 
     </div>
@@ -137,6 +142,20 @@
 
     function sumirMensagem() {
         cardErro.style.display = "none"
+    }
+
+    let visualizar_senha = false
+    function visualizacao_senha(){
+
+        if(!visualizar_senha){
+            senha_input.type = "text";
+            visualizar_senha = true;
+            olho.src = `assets/icon/olho_fechado.png`;
+        } else if (visualizar_senha){
+            senha_input.type = "password"
+            visualizar_senha = false;
+            olho.src = `assets/icon/olho_aberto.png`;
+        }
     }
 
 </script>

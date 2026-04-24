@@ -46,33 +46,48 @@
 
       <div class="campo">
         <label for="nome_input">Nome</label>
-        <input type="text" id="nome_input" placeholder="Digite seu nome">
+        <div class="container_campo">
+          <input type="text" id="nome_input" placeholder="Digite seu nome">
+        </div>
       </div>
       
       <div class="campo">
         <label for="user_name_input">Nome de Usuário</label>
-        <input type="text" id="user_name_input" placeholder="seu_username">
+        <div class="container_campo">
+          <input type="text" id="user_name_input" placeholder="seu_username">
+        </div>
       </div>
 
       <div class="campo">
         <label for="email_input">Email</label>
-        <input type="text" id="email_input" placeholder="email@exemplo.com">
+        <div class="container_campo">
+          <input type="text" id="email_input" placeholder="email@exemplo.com">
+        </div>
       </div>
+
 
       <div class="campo">
         <label for="senha_input">Senha</label>
-        <input type="password" id="senha_input" placeholder="******">
+        <div class="container_campo ">
+            <input type="password" id="senha_input" placeholder="******">
+            <button onclick="visualizacao_senha()" id="olho_visualizacao"><img src="assets/icon/olho_aberto.png" alt="" id="olho"></button>
+        </div>
       </div>
 
       <div class="campo">
-        <label for="confirmacao_senha_input">Confirmação de Senha</label>
-        <input type="password" id="confirmacao_senha_input" placeholder="******">
+        <label for="confirmacao_senha_input">Confirmar Senha</label>
+        <div class="container_campo ">
+            <input type="password" id="confirmacao_senha_input" placeholder="******">
+            <button onclick="visualizacao_senha2()" id="olho_visualizacao2"><img src="assets/icon/olho_aberto.png" alt="" id="olho2"></button>
+        </div>
       </div>
 
-      <button onclick="cadastrar()">Criar Conta</button>
+      
+
+      <button onclick="cadastrar()" class="botao_formulario">Criar Conta</button>
 
       <div class="campo_adicional">
-        <span>Já possui conta? <a href="login.html" style="text-decoration: none; color: #BF1429;">ENTRAR</a></span>
+        <span>Já possui conta? <a href="login.html" style="text-decoration: none;" id="texto_href">ENTRAR</a></span>
       </div>
 
     </div>
@@ -137,7 +152,19 @@
       finalizarAguardar();
       return false;
     } else {
-      setInterval(sumirMensagem, 5000);
+      let posicao_arroba = emailVar.indexOf("@");
+      let posicao_ultimo_ponto = emailVar.lastIndexOf(".");
+      
+      if(posicao_arroba < posicao_ultimo_ponto){
+        setInterval(sumirMensagem, 5000);
+      } else{
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+        "(Email inválido)";
+
+      finalizarAguardar();
+      return false;
+      }
     }
     
     if(senhaVar.length < 6){
@@ -241,4 +268,33 @@
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
+
+  let visualizar_senha = false
+    function visualizacao_senha(){
+
+        if(!visualizar_senha){
+            senha_input.type = "text";
+            visualizar_senha = true;
+            olho.src = `assets/icon/olho_fechado.png`;
+        } else if (visualizar_senha){
+            senha_input.type = "password"
+            visualizar_senha = false;
+            olho.src = `assets/icon/olho_aberto.png`;
+        }
+    }
+
+  let visualizar_senha2 = false
+  function visualizacao_senha2(){
+
+    if(!visualizar_senha2){
+      confirmacao_senha_input.type = "text";
+      visualizar_senha2 = true;
+      olho2.src = `assets/icon/olho_fechado.png`;
+    } else if (visualizar_senha2){
+      confirmacao_senha_input.type = "password"
+      visualizar_senha2 = false;
+      olho2.src = `assets/icon/olho_aberto.png`;
+    }
+  }
+
 </script>

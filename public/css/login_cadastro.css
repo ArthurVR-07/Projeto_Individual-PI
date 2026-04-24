@@ -21,6 +21,12 @@ body{
     font-family: 'cinzel';
     font-size: 12px;
     letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.header a:hover{
+    color: white;
+    transform: translateY(-3px);
 }
 
 .navegacao{
@@ -36,6 +42,14 @@ body{
 
 .voltar_inicio a{
     color: white;
+}
+
+.voltar_inicio{
+    transition: 0.5s;
+}
+
+.voltar_inicio:hover{
+    transform: translateX(-5px);
 }
 
 /* Seção de login / cadastro */
@@ -80,13 +94,48 @@ body{
 }
 
 input{
-    background-color: #0D0D15;
-    border: 1px solid #1E1420;
+    background: none;
+    border: none;
     padding: 5px;
-    margin-top: 5px;
+    color: white;
+    width: 100%;
 }
 
-button{
+.container_campo{
+    background-color: #0D0D15;
+    border: 1px solid #1E1420;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 30px;
+}
+
+.container #olho_visualizacao{
+    background: none;
+    border: none;
+    height: 25px;
+    cursor: pointer;
+}
+
+.container #olho_visualizacao2{
+    background: none;
+    border: none;
+    height: 25px;
+    cursor: pointer;
+}
+
+#olho_visualizacao #olho{
+    height: 25px;
+    width: auto;
+}
+
+#olho_visualizacao2 #olho2{
+    height: 25px;
+    width: auto;
+}
+
+.botao_formulario{
     border: none;
     background-color: #BF1429;
     color: white;
@@ -94,10 +143,27 @@ button{
     padding: 5px;
     font-size: 20px;
     cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.botao_formulario:hover{
+    background-color: #111119;
+    color: #BF1429;
+    transform: scale(1.05);
+    border: 1px solid #BF1429;
 }
 
 .campo_adicional{
     display: flex;
     justify-content: center;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+span #texto_href{
+    color: #BF1429;
+}
+
+span #texto_href:hover{
     color: rgba(255, 255, 255, 0.50);
 }
