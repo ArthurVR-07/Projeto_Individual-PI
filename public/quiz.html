@@ -4,14 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quiz - Akame Ga Kill</title>
+    <link rel="stylesheet" href="./css/quiz.css">
+    <link rel="icon" href="./assets/icon/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 
 
 <body onload="onloadEsconder()">
+    <!-- Header -->
+    
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="./assets/icon/logo.png" alt="logo"></a>
+        </div>
+
+        <div class="navegacao">
+            <a href="index.html#equipes">Equipes</a>
+            <a href="index.html#armas_imperiais">Armas Imperiais</a>
+            <a href="index.html#arcos_historia">Arcos</a>
+            <a href="">DashBoard</a>
+        </div>
+
+        <div class="voltar_inicio">
+          <a href="index.html"><span style="font-size: 16px;"><</span> Voltar para o Início</a>
+        </div>
+        
+    </div>
+
     <div id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+        <div class="alerta">
+            <span id="titulo_alerta">AVISO</span>
+            <span id="desc_alerta">O quiz se baseia somente na história do anime, não apresentando perguntas sobre o mangá, e ao iniciar você concorda estar exposto a spoilers sobre a história do anime</span>
+            <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+        </div>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
@@ -66,7 +92,7 @@
                 <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
-
+            
         </div>
     </div>
 </body>
@@ -74,34 +100,78 @@
 </html>
 <script>
     const listaDeQuestoes = [
-
         {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
+            pergunta: "Qual era o objetivo inicial de Tatsumi ao ir para a capital?",
+            alternativaA: "Vingar a morte de seus pais",
+            alternativaB: "Conseguir dinheiro para salvar sua aldeia pobre",
+            alternativaC: "Se tornar um soldado do Império",
+            alternativaD: "Encontrar Akame e se juntar a Night Raid",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual é o nome da arma imperial da Akame?",
+            alternativaA: "Extase",
+            alternativaB: "Pumpkin",
+            alternativaC: "Murasame",
+            alternativaD: "Rubicante",
             alternativaCorreta: "alternativaC"
         },
-
         {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
+            pergunta: "Qual habilidade especial da Murasame que a Akame possui?",
+            alternativaA: "Controla o gelo",
+            alternativaB: "Infecta o inimigo com veneno",
+            alternativaC: "Dispara projéteis de energia",
+            alternativaD: "Cria ilusões no inimigo",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Quem lidera os Jaegers?",
+            alternativaA: "Wave",
+            alternativaB: "Esdeath",
+            alternativaC: "Kurome",
+            alternativaD: "Run",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Como a participação do personagem Bullat fica marcada no anime?",
+            alternativaA: "Ele traiu a Night Raid e se juntou aos Jaeggers",
+            alternativaB: "Acaba morrendo para proteger Tatsumi",
+            alternativaC: "Perdeu a memória após um combate",
+            alternativaD: "Foi morto por Esdeath durante a batalha final",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Qual é a relação entre Akame e Kurome, membra dos Jaegers?",
+            alternativaA: "Faziam parte da liderança do império",
+            alternativaB: "Akame é a mentora que treinou Kurome",
+            alternativaC: "São inimigas que se conheceram na capital",
+            alternativaD: "São irmãs que foram separadas na infância",
             alternativaCorreta: "alternativaD"
         },
-
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "Qual é o destino de Mine ao longo da história?",
+            alternativaA: "Ela deserta da Night Raid para se juntar ao Exército Revolucionário",
+            alternativaB: "Ela morre após derrotar Seryu",
+            alternativaC: "Ela fica em coma após um combate extremo",
+            alternativaD: "Ela é capturada e presa por Esdeath",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "O que o Primeiro-Ministro Honest representa na história de Akame Ga Kill?",
+            alternativaA: "Um nobre bem-intencionado que perde o controle do poder",
+            alternativaB: "A corrupção que manipula o jovem imperador para benefício próprio",
+            alternativaC: "Um antigo membro do Night Raid que virou traidor",
+            alternativaD: "O pai biológico de Esdeath",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Quem venceu? Jaegers ou Night Raid?",
+            alternativaA: "Jaegers",
+            alternativaB: "Empate",
+            alternativaC: "Night Raid",
+            alternativaD: "Nenhum dos dois",
+            alternativaCorreta: "alternativaC"
         }
-
     ]
 
     // variáveis globais    
