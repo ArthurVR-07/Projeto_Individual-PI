@@ -33,13 +33,13 @@
     </div>
 
     <div id="pontuacaoEJogo">
-        <div class="alerta">
+        <div class="alerta" id="div_alerta">
             <span id="titulo_alerta">AVISO</span>
             <span id="desc_alerta">O quiz se baseia somente na história do anime, não apresentando perguntas sobre o mangá, e ao iniciar você concorda estar exposto a spoilers sobre a história do anime</span>
             <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
         </div>
 
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+        <div id="pontuacao" class="pontuacao">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
                 <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
@@ -189,9 +189,10 @@
     }
 
     function iniciarQuiz() {
+
         document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('div_alerta').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
