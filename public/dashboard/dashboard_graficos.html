@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pagina">
+        
+        <div class="navegacao">
+            <div class="titulo">
+                <img src="../assets/icon/logo.png" alt="" id="logo">
+            </div>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+            <div class="direcionadores_navegacao">
+                <div class="direcionador">
+                    <a href="dashboard_quiz.html">QUIZ</a>
+                </div>
+                <div class="direcionador">
+                    <a href="dashboard_graficos.html">GRÁFICOS</a>
+                </div>
+                <div class="direcionador" id="sair">
+                    <a href="../index.html">SAIR</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="graficos_dashboard">
+
+            <div class="graficos_pizza">
+                <div class="grafico">
+                    <span class="titulo_grafico">RESULTADO ÚLTIMO QUIZ, <span id="b_usuario"></span></span>
+                    <canvas id="resultado_ultimo_quiz"></canvas>
+                </div>
+
+                <div class="grafico">
+                    <span class="titulo_grafico">PORCENTAGEM ÚLTIMOS 10 QUIZ</span>
+                    <canvas id="porcentagem_10_quiz"></canvas>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+</body>
+
+<script src="../js/alerta.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+
+    b_usuario.innerHTML = sessionStorage.USER_NAME;
+
+    // Gráfico donut
+    const donut_ultimo_quiz = document.getElementById('resultado_ultimo_quiz');
+  new Chart(donut_ultimo_quiz, {
+    type: 'doughnut',
+    data: {
+      labels: ['Erradas', 'Certas'],
+      datasets: [{
+        data: [12, 19],
+        backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(0, 0, 255)'
+        ],
+        borderColor: '#12121B'
+      }]
+    },
+  });
+
+  // Gráfico donut porcentagem ultimos 10 quiz
+    const donut_porcetagem_10_quiz = document.getElementById('porcentagem_10_quiz');
+  new Chart(donut_porcetagem_10_quiz, {
+    type: 'doughnut',
+    data: {
+      labels: ['Erradas', 'Certas'],
+      datasets: [{
+        data: [78, 22],
+        backgroundColor: [
+            'rgb(255, 0, 0)',
+            'rgb(0, 0, 255)'
+        ],
+        borderColor: '#12121B'
+      }]
+    },
+  });
+
+
+    // Gráfico donut porcentagem ultimos 10 quiz
+
+</script>
+
+</html>

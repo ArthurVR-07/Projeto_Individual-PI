@@ -1,0 +1,222 @@
+body{
+    height: 100vh;
+    margin: 0;
+}
+
+.pagina{
+    display: flex;
+}
+
+.navegacao{
+    width: 25%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    border-right: 2px solid #BF1429;
+}
+
+.titulo{
+    margin-top: 30px;
+}
+
+.hello{
+    color: white;
+    font-family: 'Cinzel';
+    font-size: 24px;
+}
+
+.direcionadores_navegacao{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    margin-top: 20px;
+}
+
+.direcionadores_navegacao a{
+    text-decoration: none;
+    color: #BF1429;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid #BF1429;
+    display: flex;
+    transition: 0.3s;
+}
+
+a:hover{
+    transform: translateY(-5px);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+#sair{
+    margin-top: 140px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.quiz{
+    height: 100vh;
+    width: 75%;
+    background-color: #12121B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alerta{
+    border: 1px solid #BF1429;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 390px;
+    padding: 25px 35px;
+    gap: 20px;
+    background-color: black;
+}
+
+#titulo_alerta{
+    color: white;
+    font-family: 'Cinzel';
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#desc_alerta{
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'cinzel'
+}
+
+#botao_iniciar_quiz{
+    color: #BF1429;
+    background-color: black;
+    border: 1px solid #BF1429;
+    padding: 7px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#botao_iniciar_quiz:hover{
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-5px);
+}
+
+
+
+
+
+
+
+.jogo{
+    border: 1px solid #BF1429;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 700px;
+    padding: 25px 35px;
+    gap: 20px;
+    font-family: 'cinzel';
+    background-color: black;
+}
+
+.pontuacao{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 20px;
+}
+
+#pontuacaoDuranteJogo{
+    display: flex;
+    flex-direction: column;
+}
+
+#infoQuestao{
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.opcoes{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.botoes{
+    margin-top: 20px;
+    display: flex;
+    gap: 25px;
+}
+
+.botoes button{
+    background-color: #BF1429;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botoes button:disabled{
+    opacity: 0.3;
+    cursor: auto;
+}
+
+.botoes button:enabled:hover{
+    transform: translateY(-5px);
+}
+
+
+
+
+
+
+
+
+.graficos_dashboard{
+    background-color: #12121B;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.graficos_pizza{
+    display: flex;
+    justify-content: space-around;
+}
+
+.grafico canvas{
+    height: 300px;
+    width: auto;
+}
+
+.grafico{
+    border: 1px solid #BF1429;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.titulo_grafico{
+    font-family: 'cinzel';
+    color: white;
+    font-size: 20px;
+}
