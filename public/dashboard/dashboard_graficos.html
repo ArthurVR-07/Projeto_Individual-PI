@@ -35,17 +35,27 @@
         <div class="graficos_dashboard">
 
             <div class="graficos_pizza">
-                <div class="grafico">
-                    <span class="titulo_grafico">RESULTADO ÚLTIMO QUIZ, <span id="b_usuario"></span></span>
-                    <canvas id="resultado_ultimo_quiz"></canvas>
+                <div class="grafico_container">
+                    <span class="titulo_grafico">RESULTADO ÚLTIMO QUIZ (<span id="b_usuario_grafico"></span>)</span>
+                    <div class="grafico">
+                        <canvas id="resultado_ultimo_quiz"></canvas>
+                    </div>
                 </div>
 
-                <div class="grafico">
-                    <span class="titulo_grafico">PORCENTAGEM ÚLTIMOS 10 QUIZ</span>
-                    <canvas id="porcentagem_10_quiz"></canvas>
+                <div class="grafico_container">
+                    <span class="titulo_grafico">PORCENTAGEM ÚLTIMOS 10 QUIZ (<span id="b_usuario_grafico2"></span>)</span>
+                    <div class="grafico">
+                        <canvas id="porcentagem_10_quiz"></canvas>
+                    </div>
                 </div>
             </div>
 
+            <div class="grafico_container">
+                <span class="titulo_grafico">PORCENTAGEM DE ACERTOS DE TODOS OS USUÁRIOS (ÚLTIMOS 10 QUIZ)</span>
+                <div class="grafico_barra">
+                    <canvas id="porcentagem_acertos_cada_questao"></canvas>
+                </div>
+            </div>
 
         </div>
 
@@ -61,15 +71,19 @@
 <script>
 
     b_usuario.innerHTML = sessionStorage.USER_NAME;
-
+    b_usuario_grafico.innerHTML = sessionStorage.USER_NAME;
+    b_usuario_grafico2.innerHTML = sessionStorage.USER_NAME;
+    
     // Gráfico donut
+    const ultimo_quiz = [2, 7];
+
     const donut_ultimo_quiz = document.getElementById('resultado_ultimo_quiz');
   new Chart(donut_ultimo_quiz, {
     type: 'doughnut',
     data: {
       labels: ['Erradas', 'Certas'],
       datasets: [{
-        data: [12, 19],
+        data: ultimo_quiz,
         backgroundColor: [
             'rgb(255, 0, 0)',
             'rgb(0, 0, 255)'
@@ -77,16 +91,21 @@
         borderColor: '#12121B'
       }]
     },
+    options: {
+        maintainAspectRatio: false,
+    }
   });
 
   // Gráfico donut porcentagem ultimos 10 quiz
+    const ultimos_10_quiz = [32, 68];
+
     const donut_porcetagem_10_quiz = document.getElementById('porcentagem_10_quiz');
   new Chart(donut_porcetagem_10_quiz, {
     type: 'doughnut',
     data: {
       labels: ['Erradas', 'Certas'],
       datasets: [{
-        data: [78, 22],
+        data: ultimos_10_quiz,
         backgroundColor: [
             'rgb(255, 0, 0)',
             'rgb(0, 0, 255)'
@@ -94,10 +113,66 @@
         borderColor: '#12121B'
       }]
     },
+    options: {
+        maintainAspectRatio: false,
+    }
   });
 
 
-    // Gráfico donut porcentagem ultimos 10 quiz
+    // Gráfico barra porcentagem acertos de cada questão dos ultimos 50 quiz de todos os usuarios
+    const dados_barra = [10, 20, 30, 40, 50, 60, 70, 100, 30]
+
+    const cores = []
+    for (let i = 0; i < dados_barra.length; i++) {
+        if (dados_barra[i] <= 30) {
+            cores.push('rgb(255, 0, 0)')
+        } else if (dados_barra[i] <= 70) {
+            cores.push('rgb(255, 255, 0)')
+        } else {
+            cores.push('rgb(0, 0, 255)')
+        }
+    }
+
+    const porcentagem_acertos_cada_questao = document.getElementById('porcentagem_acertos_cada_questao');
+  new Chart(porcentagem_acertos_cada_questao, {
+    type: 'bar',
+    data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
+        datasets: [{
+            barPercentage: 0.5,
+            barThickness: 20,
+            maxBarThickness: 20,
+            minBarLength: 2,
+            data: dados_barra,
+            backgroundColor: cores
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            x: {
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.3)'
+                },
+                ticks: {
+                    color: '#ffffff'
+                }
+            },
+            y: {
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.3)'
+                },
+                ticks: {
+                    color: '#ffffff'
+                }
+            }
+        }
+    }
+  });
+
 
 </script>
 
