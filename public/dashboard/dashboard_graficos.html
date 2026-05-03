@@ -52,6 +52,22 @@
 
             <div class="grafico_container">
                 <span class="titulo_grafico">PORCENTAGEM DE ACERTOS DE TODOS OS USUÁRIOS (ÚLTIMOS 10 QUIZ)</span>
+
+                <div class="kpis">
+                    <div class="kpi_container">
+                        <div id="cor_azul"></div>
+                        <span class="desc_kpi">FÁCIL > 70%</span>
+                    </div>
+                    <div class="kpi_container">
+                        <div id="cor_amarela"></div>
+                        <span class="desc_kpi">MÉDIA <= 70%</span>
+                    </div>
+                    <div class="kpi_container">
+                        <div id="cor_vermelha"></div>
+                        <span class="desc_kpi">DIFÍCIL <= 30%</span>
+                    </div>
+                </div>
+
                 <div class="grafico_barra">
                     <canvas id="porcentagem_acertos_cada_questao"></canvas>
                 </div>

@@ -206,7 +206,7 @@ a:hover{
 }
 
 .grafico_container{
-    border: 1px solid #BF1429;
+    border: 2px solid #BF1429;
     border-radius: 5px;
     padding: 20px;
     display: flex;
@@ -216,12 +216,12 @@ a:hover{
 }
 
 .grafico{
-    height: 250px;
+    height: 230px;
     width: 250px;
 }
 
 .grafico_barra{
-    height: 250px;
+    height: 230px;
     width: 900px;
 }
 
@@ -229,4 +229,39 @@ a:hover{
     font-family: 'cinzel';
     color: white;
     font-size: 20px;
+}
+
+.kpis{
+    display: flex;
+    gap: 40px;
+}
+
+.kpis span{
+    font-family: 'cinzel';
+    color: white;
+    font-size: 14px;
+}
+
+.kpi_container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#cor_azul{
+    background-color: rgb(0, 0, 255);
+    width: 30px;
+    height: 10px;
+}
+
+#cor_amarela{
+    background-color: rgb(255, 255, 0);
+    width: 30px;
+    height: 10px;
+}
+
+#cor_vermelha{
+    background-color: rgb(255, 0, 0);
+    width: 30px;
+    height: 10px;
 }
