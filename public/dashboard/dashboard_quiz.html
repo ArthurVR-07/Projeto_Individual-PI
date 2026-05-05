@@ -26,7 +26,7 @@
                 <div class="direcionador">
                     <a href="dashboard_graficos.html">GRÁFICOS</a>
                 </div>
-                <div class="direcionador" id="sair">
+                <div class="direcionador" id="sair" onclick="limparSessao()">
                     <a href="../index.html">SAIR</a>
                 </div>
             </div>
@@ -96,6 +96,7 @@
 <script>
 
     b_usuario.innerHTML = sessionStorage.USER_NAME;
+    var id_usuario = sessionStorage.ID_USUARIO;
 
     const listaDeQuestoes = [
         { 
@@ -178,6 +179,7 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+    let respostasQuestoes = []
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
@@ -269,12 +271,14 @@
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++; certas++
                 document.getElementById("spanCertas").innerHTML = certas
+                respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 1 }) // certa
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++; erradas++
                 document.getElementById("spanErradas").innerHTML = erradas
+                respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 0 }) // errada
                 numeroDaQuestaoAtual++
             }
         })
@@ -293,6 +297,7 @@
         for (let i = 0; i < options.length; i++) { options[i].checked = false }
     }
 
+
     function finalizarJogo() {
         const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
         let texto, classe
@@ -310,5 +315,24 @@
         btnProx.disabled = true
         btnSubmeter.disabled = true
         btnTentarNovamente.disabled = false
+
+
+        fetch("/tentativa/salvar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            certas:     certas,
+            erradas:    erradas,
+            id_usuario: sessionStorage.ID_USUARIO,
+            respostas:  respostasQuestoes
+        })
+    }).then(function(resposta) {
+        if (resposta.ok) {
+            console.log("Resultado salvo com sucesso!")
+        } else {
+            console.error("Erro ao salvar resultado")
+        }
+    })
     }
+    
 </script>
