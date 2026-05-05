@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-// var aquarioModel = require("../models/aquarioModel");
 
 // Definindo a tabela ASCII estendida com os principais caracteres do teclado ABNT para criptografar / descriptografar a senha
 let tabelaASCII = {
@@ -71,14 +70,13 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    // Variável que recura os valores do cadastro.html
     var nome = req.body.nomeServer;
     var username = req.body.usernameServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    // var fkEmpresa = req.body.idEmpresaVincularServer;
 
-    // Faça as validações dos valores
+    // Validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (username == undefined){
@@ -87,9 +85,7 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } /*else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
-    }*/ else {
+    } else {
 
         // Criptografando a senha
         let vetor_separar_senha = [];
@@ -108,7 +104,7 @@ function cadastrar(req, res) {
             }
         }
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        // Enviando valores como parâmetro para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, username, email, senhaCriptografada)
             .then(
                 function (resultado) {

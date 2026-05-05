@@ -302,9 +302,9 @@
         const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
         let texto, classe
 
-        if (porcentagem <= 0.3)                        { texto = "Parece que você não estudou...";      classe = "text-danger-with-bg" }
-        else if (porcentagem > 0.3 && porcentagem < 0.9) { texto = "Pode melhorar na próxima, hein!";   classe = "text-warning-with-bg" }
-        else                                            { texto = "Uau, parabéns!";                     classe = "text-success-with-bg" }
+        if (porcentagem <= 0.3)                        { texto = "Parece que você não estudou...";}
+        else if (porcentagem > 0.3 && porcentagem < 0.9) { texto = "Pode melhorar na próxima, hein!";}
+        else                                            { texto = "Uau, parabéns!";}
 
         texto += "<br> Você acertou " + Math.round(porcentagem * 100) + "% das questões."
 

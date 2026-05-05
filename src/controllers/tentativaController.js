@@ -1,4 +1,3 @@
-// src/controllers/tentativaController.js
 var tentativaModel = require("../models/tentativaModel");
 
 function salvar(req, res) {
