@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../assets/icon/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -51,7 +52,7 @@
             </div>
 
             <div class="grafico_container">
-                <span class="titulo_grafico">PORCENTAGEM DE ACERTOS DE TODOS OS USUÁRIOS (ÚLTIMOS 10 QUIZ)</span>
+                <span class="titulo_grafico">PORCENTAGEM DE ACERTOS DE TODOS OS USUÁRIOS (TODO O SEMPRE)</span>
 
                 <div class="kpis">
                     <div class="kpi_container">
@@ -220,7 +221,7 @@
             plugins: { legend: { display: false } },
             scales: {
                 x: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' } },
-                y: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' } }
+                y: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' }, max: 100 }
             }
         }
         });

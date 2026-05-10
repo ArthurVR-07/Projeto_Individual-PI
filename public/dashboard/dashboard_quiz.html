@@ -6,6 +6,7 @@
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../assets/icon/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 
@@ -247,7 +248,7 @@
         } else {
             finalizarJogo()
         }
-        limparCoresBackgroundOpcoes()
+
     }
 
     function tentarNovamente() {
@@ -284,13 +285,7 @@
         })
     }
 
-    function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("option")
-        options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-        })
-    }
+    
 
     function desmarcarRadioButtons() {
         const options = document.getElementsByName("option")

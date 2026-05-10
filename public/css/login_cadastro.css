@@ -167,3 +167,13 @@ span #texto_href{
 span #texto_href:hover{
     color: rgba(255, 255, 255, 0.50);
 }
+
+#div_aguardar{
+    justify-content: center;
+}
+
+#cardErro{
+    font-family: 'cinzel';
+    color: #BF1429;
+    font-size: 20px;
+}

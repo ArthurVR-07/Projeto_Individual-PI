@@ -1,9 +1,9 @@
 // var ambiente_processo = 'producao';
 var ambiente_processo = 'desenvolvimento';
 
+// Esse é um if para determinar qual o ambiente que a API vai inserir no banco de dados
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
-// Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
-// A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
+
 
 require("dotenv").config({ path: caminho_env });
 

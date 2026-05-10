@@ -84,7 +84,13 @@
 
       
 
-      <button onclick="cadastrar()" class="botao_formulario">Criar Conta</button>
+      <button onclick="cadastrar()" class="botao_formulario" id="botao_cadastro_login">Criar Conta</button>
+      <div id="div_aguardar" style="display: none;">
+        <img src="/assets/aguarde-orange.gif" alt="">
+      </div>
+      <div id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
 
       <div class="campo_adicional">
         <span>Já possui conta? <a href="login.html" style="text-decoration: none;" id="texto_href">ENTRAR</a></span>
@@ -99,7 +105,7 @@
 <script>
 
   function cadastrar() {
-    // aguardar();
+    aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -119,69 +125,61 @@
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
+        "Algum campo está em branco";
+      
+        setTimeout(Timeout_erro, 5000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
 
     if(nomeVar.length <= 1){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(O nome é pequeno demais)";
+        "O nome é pequeno demais";
 
-      finalizarAguardar();
+        setTimeout(Timeout_erro, 5000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
     
     if(!emailVar.includes('@') || !emailVar.includes('.')){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Email inválido)";
+        "Email inválido";
 
-      finalizarAguardar();
+        setTimeout(Timeout_erro, 5000);
       return false;
+
     } else {
       let posicao_arroba = emailVar.indexOf("@");
       let posicao_ultimo_ponto = emailVar.lastIndexOf(".");
       
-      if(posicao_arroba < posicao_ultimo_ponto){
-        setInterval(sumirMensagem, 5000);
-      } else{
+      if(posicao_arroba > posicao_ultimo_ponto){
         cardErro.style.display = "block";
         mensagem_erro.innerHTML =
-        "(Email inválido)";
+        "Email inválido";
 
-      finalizarAguardar();
+        setTimeout(Timeout_erro, 5000);
       return false;
+
       }
     }
     
     if(senhaVar.length < 6){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(A senha deve ter mais de 6 caracteres)";
+        "A senha deve ter mais de 6 caracteres";
 
-      finalizarAguardar();
+        setTimeout(Timeout_erro, 5000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
     
     if(senhaVar != confirmacaoSenhaVar){
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(As senhas não coincidem)";
+        "As senhas não coincidem";
 
-      finalizarAguardar();
+        setTimeout(Timeout_erro, 5000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -202,10 +200,10 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          // cardErro.style.display = "block";
+          cardErro.style.display = "block";
 
-          // mensagem_erro.innerHTML =
-            // "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";

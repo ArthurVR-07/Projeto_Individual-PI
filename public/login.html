@@ -59,7 +59,13 @@
         </div>
       </div>
 
-      <button onclick="entrar()" class="botao_formulario">ENTRAR</button>
+      <button onclick="entrar()" class="botao_formulario" id="botao_cadastro_login">ENTRAR</button>
+      <div id="div_aguardar" style="display: none;">
+        <img src="assets/aguarde-orange.gif" alt="">
+      </div>
+      <div id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
 
       <div class="campo_adicional">
         <span>Novo por aqui? <a href="cadastro.html" style="text-decoration: none;" id="texto_href">CADASTRE-SE</a></span>
@@ -75,21 +81,19 @@
 
 
     function entrar() {
-        // aguardar();
+        aguardar();
 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Algum campo está em branco";
             console.log("Mensagem de erro para todos os campos em branco")
-            finalizarAguardar();
+            setTimeout(Timeout_erro, 5000);
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
+        
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
