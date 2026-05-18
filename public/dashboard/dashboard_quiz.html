@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="icon" href="../assets/icon/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
@@ -13,13 +14,10 @@
 <body onload="onloadEsconder()">
     <div class="pagina">
         
-        <div class="navegacao">
-            <div class="titulo">
-                <img src="../assets/icon/logo.png" alt="" id="logo">
-            </div>
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+        <div class="sidebar">
+            <img src="../assets/icon/logo.png" alt="" id="logo">
+            <span id="hello">Olá, <span id="b_usuario">usuário</span>!</span>
+
             <div class="direcionadores_navegacao">
                 <div class="direcionador">
                     <a href="dashboard_quiz.html">QUIZ</a>
@@ -44,16 +42,7 @@
             
             <div class="jogo" id="jogo">
 
-                <div id="pontuacao" class="pontuacao">
-                    <div id="pontuacaoDuranteJogo">
-                        <span>Quantidade de acertos: <span id="spanCertas"></span></span>
-                        <span>Quantidade de erros: <span id="spanErradas"></span></span>
-                    </div>
-                    <div id="pontuacaoFinalJogo">
-                        <span id="pontuacaoFinal">Pontuação Final: <span id="spanPontuacaoFinal">***</span></span>
-                        <span id="msgFinal">***</span>
-                    </div>
-                </div>
+                
                 
                 <div id="infoQuestao">
                     <span>Questão <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>: <br><span id="spanQuestaoExibida"></span></span>
@@ -183,12 +172,10 @@
     let respostasQuestoes = []
 
     function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "none"
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('alerta').style.display = "none"
 
@@ -271,14 +258,14 @@
             if (option.checked && option.value === respostaQuestaoAtual) {
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++; certas++
-                document.getElementById("spanCertas").innerHTML = certas
+                
                 respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 1 }) // certa
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++; erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
+                
                 respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 0 }) // errada
                 numeroDaQuestaoAtual++
             }
@@ -295,33 +282,21 @@
 
     function finalizarJogo() {
         const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
-        let texto, classe
-
-        if (porcentagem <= 0.3)                        { texto = "Parece que você não estudou...";}
-        else if (porcentagem > 0.3 && porcentagem < 0.9) { texto = "Pode melhorar na próxima, hein!";}
-        else                                            { texto = "Uau, parabéns!";}
-
-        texto += "<br> Você acertou " + Math.round(porcentagem * 100) + "% das questões."
-
-        document.getElementById('msgFinal').innerHTML = texto
-        document.getElementById('msgFinal').classList.add(classe)
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
         btnTentarNovamente.disabled = false
 
-
         fetch("/tentativa/salvar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            certas:     certas,
-            erradas:    erradas,
+            porcentagem_acerto: porcentagem,
             id_usuario: sessionStorage.ID_USUARIO,
             respostas:  respostasQuestoes
         })
     }).then(function(resposta) {
+        console.log(resposta)
         if (resposta.ok) {
             console.log("Resultado salvo com sucesso!")
         } else {

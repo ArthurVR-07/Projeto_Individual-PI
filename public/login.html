@@ -28,7 +28,6 @@
             <a href="index.html#equipes">Equipes</a>
             <a href="index.html#armas_imperiais">Armas Imperiais</a>
             <a href="index.html#arcos_historia">Arcos</a>
-            <a href="">DashBoard</a>
         </div>
 
         <div class="voltar_inicio">
@@ -81,8 +80,6 @@
 
 
     function entrar() {
-        aguardar();
-
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
@@ -90,7 +87,8 @@
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Algum campo está em branco";
             console.log("Mensagem de erro para todos os campos em branco")
-            setTimeout(Timeout_erro, 5000);
+            setTimeout(Timeout_erro, 3000);
+            
             return false;
         }
         
@@ -121,9 +119,13 @@
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.USER_NAME = json.username;
 
+
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML =
+                    "Login realizado com sucesso. Redirecionando para dashboard...";
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard_quiz.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000);
 
                 });
 
@@ -133,7 +135,9 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    cardErro.style.display = "block"
+                    mensagem_erro.innerHTML = texto;
+                    setTimeout(Timeout_erro, 3000);
                 });
             }
 
@@ -142,10 +146,6 @@
         })
 
         return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
     let visualizar_senha = false

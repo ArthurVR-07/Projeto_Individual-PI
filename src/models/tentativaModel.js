@@ -1,9 +1,9 @@
 var database = require("../database/config");
 
-function salvarTentativa(certas, erradas, id_usuario) {
+function salvarTentativa(porcentagem_acerto, id_usuario) {
     var instrucaoSql = `
-        INSERT INTO tentativa (certas, erradas, id_usuario)
-        VALUES (${certas}, ${erradas}, ${id_usuario});
+        INSERT INTO tentativa (porcentagem_acerto, id_usuario)
+        VALUES (${porcentagem_acerto}, ${id_usuario});
     `;
     console.log("Executando SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -12,7 +12,7 @@ function salvarTentativa(certas, erradas, id_usuario) {
 function salvarRespostasQuestoes(tentativa_id, respostas) {
     var valores = "";
 
-    for (var i = 0; i < respostas.length; i++) {
+    for (let i = 0; i < respostas.length; i++) {
         valores += `(${tentativa_id}, ${respostas[i].questao_id}, ${respostas[i].resultado})`;
 
         if (i < respostas.length - 1) {
@@ -31,7 +31,7 @@ function salvarRespostasQuestoes(tentativa_id, respostas) {
 
 function buscarUltimoQuiz(id_usuario) {
     var instrucaoSql = `
-        SELECT certas, erradas
+        SELECT porcentagem_acerto
         FROM tentativa
         WHERE id_usuario = ${id_usuario}
         ORDER BY data_horario DESC
@@ -41,21 +41,6 @@ function buscarUltimoQuiz(id_usuario) {
     return database.executar(instrucaoSql);
 }
 
-
-function buscarUltimos10Quiz(id_usuario) {
-    var instrucaoSql = `
-        SELECT SUM(certas) AS certas, SUM(erradas) AS erradas
-        FROM (
-            SELECT certas, erradas
-            FROM tentativa
-            WHERE id_usuario = ${id_usuario}
-            ORDER BY data_horario DESC
-            LIMIT 10
-        ) AS ultimos10;
-    `;
-    console.log("Executando SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
 
 function buscarAcertosPorQuestao() {
     var instrucaoSql = `
@@ -70,10 +55,46 @@ function buscarAcertosPorQuestao() {
     return database.executar(instrucaoSql);
 }
 
+
+function buscarPontuacao(id_usuario){
+    var instrucaoSql = `
+    SELECT pontuacao
+    FROM usuario
+    WHERE id = ${id_usuario}
+    `;
+    console.log("Executando SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizarPontuacao(id_usuario, pontos_ganhos) {
+    var instrucaoSql = `
+        UPDATE usuario
+        SET pontuacao = pontuacao + ${pontos_ganhos}
+        WHERE id = ${id_usuario};
+    `;
+    console.log("Executando SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarRank(id_usuario){
+    var instrucaoSql = `
+        SELECT COUNT(*) + 1 AS posicao
+        FROM usuario
+        WHERE pontuacao > (
+            SELECT pontuacao 
+            FROM usuario 
+            WHERE id = ${id_usuario}
+        );
+    `;
+    console.log("Executando SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     salvarTentativa,
     salvarRespostasQuestoes,
     buscarUltimoQuiz,
-    buscarUltimos10Quiz,
-    buscarAcertosPorQuestao
+    buscarPontuacao,
+    buscarAcertosPorQuestao,
+    atualizarPontuacao,
+    buscarRank
 };

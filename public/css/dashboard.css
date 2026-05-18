@@ -1,267 +1,111 @@
 body{
-    height: 100vh;
-    margin: 0;
-}
-
-.pagina{
-    display: flex;
-}
-
-.navegacao{
-    width: 25%;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    border-right: 2px solid #BF1429;
-}
-
-.titulo{
-    margin-top: 30px;
-}
-
-.hello{
-    color: white;
-    font-family: 'Cinzel';
-    font-size: 24px;
-}
-
-.direcionadores_navegacao{
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-    margin-top: 20px;
-}
-
-.direcionadores_navegacao a{
-    text-decoration: none;
-    color: #BF1429;
-    padding: 10px 15px 10px 15px;
-    border: 1px solid #BF1429;
-    display: flex;
-    transition: 0.3s;
-}
-
-a:hover{
-    transform: translateY(-5px);
-    color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-#sair{
-    margin-top: 140px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.quiz{
-    height: 100vh;
-    width: 75%;
     background-color: #12121B;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.alerta{
-    border: 1px solid #BF1429;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 390px;
-    padding: 25px 35px;
-    gap: 20px;
-    background-color: black;
-}
-
-#titulo_alerta{
-    color: white;
-    font-family: 'Cinzel';
-    font-size: 24px;
-    font-weight: 700;
-}
-
-#desc_alerta{
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'cinzel'
-}
-
-#botao_iniciar_quiz{
-    color: #BF1429;
-    background-color: black;
-    border: 1px solid #BF1429;
-    padding: 7px 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#botao_iniciar_quiz:hover{
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    color: rgba(255, 255, 255, 0.8);
-    transform: translateY(-5px);
-}
-
-
-
-
-
-
-
-.jogo{
-    border: 1px solid #BF1429;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 700px;
-    padding: 25px 35px;
-    gap: 20px;
-    font-family: 'cinzel';
-    background-color: black;
-}
-
-.pontuacao{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    font-size: 20px;
-}
-
-#pontuacaoDuranteJogo{
-    display: flex;
-    flex-direction: column;
-}
-
-#infoQuestao{
-    color: white;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.opcoes{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    gap: 10px;
-    font-size: 20px;
-}
-
-.botoes{
-    margin-top: 20px;
-    display: flex;
-    gap: 25px;
-}
-
-.botoes button{
-    background-color: #BF1429;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.botoes button:disabled{
-    opacity: 0.3;
-    cursor: auto;
-}
-
-.botoes button:enabled:hover{
-    transform: translateY(-5px);
-}
-
-
-
-
-
-
-
-
-.graficos_dashboard{
+.pagina_dashboard{
+    justify-self: end;
     background-color: #12121B;
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    padding: 40px 30px 0px 30px;
-    gap: 30px;
-}
-
-.graficos_pizza{
-    display: flex;
-    justify-content: space-between;
-}
-
-.grafico_container{
-    border: 2px solid #BF1429;
-    border-radius: 5px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-}
-
-.grafico{
-    height: 230px;
-    width: 250px;
-}
-
-.grafico_barra{
-    height: 230px;
-    width: 900px;
-}
-
-.titulo_grafico{
-    font-family: 'cinzel';
-    color: white;
-    font-size: 20px;
+    width: 80%;
+    min-height: 100vh;
 }
 
 .kpis{
-    display: flex;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+    padding: 20px 20px 0 20px;
 }
 
-.kpis span{
+.kpi_item{
+    border-radius: 10px;
+    height: 150px;
+    border: 1px solid #BF1429;
+}
+
+.titulo_kpi{
+    display: flex;
+    font-size: 28px;
     font-family: 'cinzel';
+    font-weight: 600;
+    justify-self: center;
     color: white;
-    font-size: 14px;
 }
 
-.kpi_container{
+.conteudo{
+    margin-top: 30px;
+    justify-self: center;
+}
+
+.conteudo span{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#pontuacao{
+    color: white;
+}
+
+#grafico_barra{
+    margin: 20px;
+    margin-top: 50px;
+    height: 500px;
+    border: 1px solid #BF1429;
+    border-radius: 10px;
+}
+
+#titulo_grafico_barra{
+    color: #BF1429;
+    font-size: 26px;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-self: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+
 }
 
-#cor_azul{
-    background-color: rgb(0, 0, 255);
-    width: 30px;
-    height: 10px;
+.cores{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#cor_amarela{
-    background-color: rgb(255, 255, 0);
-    width: 30px;
-    height: 10px;
+.cor{
+    display: flex;
 }
 
-#cor_vermelha{
-    background-color: rgb(255, 0, 0);
-    width: 30px;
-    height: 10px;
+.cor span{
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#azul{
+    width: 40px;
+    height: 15px;
+    background-color: blue;
+    align-self: center;
+    margin-right: 10px;
+}
+
+#amarelo{
+    width: 40px;
+    height: 15px;
+    background-color: yellow;
+    align-self: center;
+    margin-right: 10px;
+}
+
+#vermelho{
+    width: 40px;
+    height: 15px;
+    background-color: red;
+    align-self: center;
+    margin-right: 10px;
+}
+
+#container_grafico{
+    height: 350px;
+    padding: 0 20px 20px 20px;
 }

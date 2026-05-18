@@ -11,8 +11,12 @@ router.get("/ultimo/:id_usuario", function(req, res) {
     tentativaController.buscarUltimoQuiz(req, res);
 });
 
-router.get("/ultimos10/:id_usuario", function(req, res) {
-    tentativaController.buscarUltimos10Quiz(req, res);
+router.get("/pontuacao/:id_usuario", function(req, res) {
+    tentativaController.buscarPontuacao(req, res);
+});
+
+router.get("/rank/:id_usuario", function(req, res) {
+    tentativaController.buscarRank(req, res);
 });
 
 router.get("/questoes", function(req, res) {

@@ -7,19 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="icon" href="../assets/icon/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="pagina">
         
-        <div class="navegacao">
-            <div class="titulo">
-                <img src="../assets/icon/logo.png" alt="" id="logo">
-            </div>
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+        <div class="sidebar">
+            <img src="../assets/icon/logo.png" alt="" id="logo">
+            <span id="hello">Olá, <span id="b_usuario">usuário</span>!</span>
+
             <div class="direcionadores_navegacao">
                 <div class="direcionador">
                     <a href="dashboard_quiz.html">QUIZ</a>
@@ -33,53 +31,50 @@
             </div>
         </div>
 
-        <div class="graficos_dashboard">
-
-            <div class="graficos_pizza">
-                <div class="grafico_container">
-                    <span class="titulo_grafico">RESULTADO ÚLTIMO QUIZ (<span id="b_usuario_grafico"></span>)</span>
-                    <div class="grafico">
-                        <canvas id="resultado_ultimo_quiz"></canvas>
+        <div class="pagina_dashboard">
+            <div class="kpis">
+                <div class="kpi_item">
+                    <span class="titulo_kpi">Pontuação Total</span>
+                    <div class="conteudo">
+                        <span id="pontuacao"><span id="qtd_final_pontos"></span> pts</span>
                     </div>
                 </div>
-
-                <div class="grafico_container">
-                    <span class="titulo_grafico">PORCENTAGEM ÚLTIMOS 10 QUIZ (<span id="b_usuario_grafico2"></span>)</span>
-                    <div class="grafico">
-                        <canvas id="porcentagem_10_quiz"></canvas>
+                <div class="kpi_item">
+                    <span class="titulo_kpi">Acertos Último Quiz</span>
+                    <div class="conteudo">
+                        <span id="porcentagem_resultado"><span id="porcentagem_acertos_ultimo_quiz"></span>%</span>
+                    </div>
+                </div>
+                <div class="kpi_item">
+                    <span class="titulo_kpi">Posição Ranking</span>
+                    <div class="conteudo">
+                        <span id="ranking_posicao"><span id="posicao"></span>°</span>
                     </div>
                 </div>
             </div>
 
-            <div class="grafico_container">
-                <span class="titulo_grafico">PORCENTAGEM DE ACERTOS DE TODOS OS USUÁRIOS (TODO O SEMPRE)</span>
-
-                <div class="kpis">
-                    <div class="kpi_container">
-                        <div id="cor_azul"></div>
-                        <span class="desc_kpi">FÁCIL > 70%</span>
+            <div id="grafico_barra">
+                <span id="titulo_grafico_barra">Porcentagem de acertos por questão de todos os usuários</span>
+                <div class="cores">
+                    <div class="cor">
+                        <div id="azul"></div>
+                        <span class="desc_cor"> >= 70%</span>
                     </div>
-                    <div class="kpi_container">
-                        <div id="cor_amarela"></div>
-                        <span class="desc_kpi">MÉDIA <= 70%</span>
+                    <div class="cor">
+                        <div id="amarelo"></div>
+                        <span class="desc_cor"> >= 30%</span>
                     </div>
-                    <div class="kpi_container">
-                        <div id="cor_vermelha"></div>
-                        <span class="desc_kpi">DIFÍCIL <= 30%</span>
+                    <div class="cor">
+                        <div id="vermelho" style="color: b;"></div>
+                        <span class="desc_cor"> < 30%</span>
                     </div>
                 </div>
-
-                <div class="grafico_barra">
+                <div id="container_grafico">
                     <canvas id="porcentagem_acertos_cada_questao"></canvas>
                 </div>
             </div>
 
         </div>
-
-
-
-
-
     </div>
 </body>
 
@@ -89,86 +84,7 @@
 
     var id_usuario = sessionStorage.ID_USUARIO;
     document.getElementById('b_usuario').innerHTML = sessionStorage.USER_NAME;
-    document.getElementById('b_usuario_grafico').innerHTML = sessionStorage.USER_NAME;
-    document.getElementById('b_usuario_grafico2').innerHTML = sessionStorage.USER_NAME;
 
-    // Requisição dos dados através do fetch e insere eles no gráfico através da function plotarGrafico do gráfico de ultimo resultado do quiz do usuario
-    function obterDadosUltimoQuiz() {
-        fetch(`/tentativa/ultimo/${id_usuario}`)
-            .then(function(res) {
-                if (res.ok) {
-                    res.json().then(function(resposta) {
-                        console.log(`Dados último quiz: ${JSON.stringify(resposta)}`);
-                        plotarGraficoUltimoQuiz(resposta);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function(erro) {
-                console.error(`Erro ao buscar último quiz: ${erro.message}`);
-            });
-    }
-
-    function plotarGraficoUltimoQuiz(resposta) {
-    const ultimo_quiz = [resposta.erradas, resposta.certas]
-
-    const donut_ultimo_quiz = document.getElementById('resultado_ultimo_quiz')
-  new Chart(donut_ultimo_quiz, {
-        type: 'doughnut',
-        data: {
-            labels: ['Erradas', 'Certas'],
-            datasets: [{
-                data: ultimo_quiz,
-                backgroundColor: ['rgb(255, 0, 0)', 'rgb(0, 0, 255)'],
-                borderColor: '#12121B'
-            }]
-        },
-        options: { maintainAspectRatio: false }
-        });
-    }
-
-    // Gráfico dos últimos 10 quiz do usuario
-    function obterDadosUltimos10Quiz() {
-        fetch(`/tentativa/ultimos10/${id_usuario}`)
-            .then(function(res) {
-                if (res.ok) {
-                    res.json().then(function(resposta) {
-                        console.log(`Dados últimos 10 quiz: ${JSON.stringify(resposta)}`);
-                        plotarGraficoUltimos10Quiz(resposta);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function(erro) {
-                console.error(`Erro ao buscar últimos 10 quiz: ${erro.message}`);
-            });
-    }
-
-    function plotarGraficoUltimos10Quiz(resposta) {
-
-        let total = Number(resposta.certas) + Number(resposta.erradas);
-        let porcentagem_certas = ((resposta.certas / total) * 100).toFixed(2);
-        let porcentagem_erradas =  ((resposta.erradas / total) * 100).toFixed(2);
-
-        
-        const ultimos_10_quiz = [porcentagem_erradas, porcentagem_certas]
-
-    const donut_ultimos_10_quiz = document.getElementById('porcentagem_10_quiz')
-  new Chart(donut_ultimos_10_quiz, {
-        type: 'doughnut',
-        data: {
-            labels: ['Erradas', 'Certas'],
-            datasets: [{
-                data: ultimos_10_quiz,
-                backgroundColor: ['rgb(255, 0, 0)', 'rgb(0, 0, 255)'],
-                borderColor: '#12121B'
-            }]
-        },
-        options: { maintainAspectRatio: false }
-        });
-    }
 
     // Gráfico de porcentagem de acertos de todos os usuarios
     function obterDadosAcertosPorQuestao() {
@@ -187,50 +103,143 @@
                 console.error(`Erro ao buscar acertos por questão: ${erro.message}`);
             });
     }
-
+        
     function plotarGraficoAcertosPorQuestao(resposta) {
-    const dados_barra = []
-    for (let i = 0; i < resposta.length; i++) {
-        dados_barra.push(resposta[i].porcentagem_acertos)
-    }
-
-    const cores = []
-    for (let i = 0; i < dados_barra.length; i++) {
-        if (dados_barra[i] <= 30){
-            cores.push('rgb(255, 0, 0)')
-        } else if (dados_barra[i] <= 70){ 
-            cores.push('rgb(255, 255, 0)')
-        } else{
-            cores.push('rgb(0, 0, 255)')
+    
+        const dados_barra = []
+        for (let i = 0; i < resposta.length; i++) {
+            dados_barra.push(resposta[i].porcentagem_acertos)
         }
-    }
-
-    const grafico_acertos_questao = document.getElementById('porcentagem_acertos_cada_questao')
-  new Chart(grafico_acertos_questao, {
-        type: 'bar',
-        data: {
-            labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
-            datasets: [{
-                barThickness: 20,
-                data: dados_barra,
-                backgroundColor: cores
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                x: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' } },
-                y: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' }, max: 100 }
+    
+        const cores = []
+        for (let i = 0; i < dados_barra.length; i++) {
+            if (dados_barra[i] < 30){
+                cores.push('rgb(255, 0, 0)')
+            } else if (dados_barra[i] <= 70){ 
+                cores.push('rgb(255, 255, 0)')
+            } else{
+                cores.push('rgb(0, 0, 255)')
             }
         }
+    
+        const grafico_acertos_questao = document.getElementById('porcentagem_acertos_cada_questao')
+      new Chart(grafico_acertos_questao, {
+            type: 'bar',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
+                datasets: [{
+                    barThickness: 20,
+                    data: dados_barra,
+                    backgroundColor: cores
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' } },
+                    y: { grid: { color: 'rgba(255,255,255,0.3)' }, ticks: { color: '#ffffff' }, max: 100 }
+                }
+            }
+            });
+    }
+    
+    function obterDadosUltimoQuiz() {
+        fetch(`/tentativa/ultimo/${id_usuario}`)
+        .then(function(res) {
+            if (res.ok){
+                res.json().then(function(resposta){
+                    console.log(`Porcentagem de acertos do último quiz: ${JSON.stringify(resposta)}`);
+                    plotarDadosUltimoQuiz(resposta);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function(erro) {
+                console.error(`Erro ao buscar último quiz: ${erro.message}`);
+            });
+        }
+        
+    function plotarDadosUltimoQuiz(resposta){
+        let porcentagem_formatada = (resposta.porcentagem_acerto * 100).toFixed(2);
+        console.log(porcentagem_formatada)
+
+        if(porcentagem_formatada < 30){
+            porcentagem_resultado.style.color = 'red'
+
+        } else if(porcentagem_formatada >= 30 && porcentagem_formatada < 70){
+            porcentagem_resultado.style.color = 'yellow'
+
+        } else if(porcentagem_formatada >= 70){
+            porcentagem_resultado.style.color = 'blue'
+        }
+
+        porcentagem_acertos_ultimo_quiz.innerHTML = `${porcentagem_formatada}`
+    }
+
+    function obterPontuacao(){
+        fetch(`/tentativa/pontuacao/${id_usuario}`)
+        .then(function(res) {
+            if (res.ok){
+                res.json().then(function(resposta){
+                    console.log(`Pontuação do usuario: ${JSON.stringify(resposta)}`);
+                    plotarPontuacao(resposta);
+                });
+            } else{
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function(erro) {
+            console.error(`Erro a pontuação: ${erro.message}`);
         });
     }
 
+    function plotarPontuacao(resposta){
+        let pontuacao_usuario = resposta.pontuacao;
+
+        qtd_final_pontos.innerHTML = pontuacao_usuario
+    }
+
+    function obterRank(){
+        fetch(`/tentativa/rank/${id_usuario}`)
+        .then(function(res) {
+            if(res.ok){
+                res.json().then(function(resposta){
+                    console.log(`O ranking do usuário é: ${JSON.stringify(resposta)}`);
+                    plotarRank(resposta);
+                });
+            } else{
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function(erro) {
+            console.error(`Erro a pontuação: ${erro.message}`);
+        });
+    }
+
+    function plotarRank(resposta){
+        let posicao_usuario = resposta.posicao;
+
+        if(posicao_usuario == 1){
+            ranking_posicao.style.color = 'gold'
+        } else if(posicao_usuario == 2){
+            ranking_posicao.style.color = 'silver'
+        } else if(posicao_usuario == 3){
+            ranking_posicao.style.color = 'darkorange'
+        } else{
+            ranking_posicao.style.color = 'white'
+        }
+
+        posicao.innerHTML = posicao_usuario
+    }
+
     window.onload = function() {
-        obterDadosUltimoQuiz()
-        obterDadosUltimos10Quiz()
         obterDadosAcertosPorQuestao()
+        obterDadosUltimoQuiz()
+        obterPontuacao()
+        obterRank()
     }
 
 </script>

@@ -14,13 +14,13 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50),
 user_name VARCHAR(50),
 email VARCHAR(50) UNIQUE,
-senha VARCHAR(50)
+senha VARCHAR(50),
+pontuacao INT DEFAULT 0
 );
 
 CREATE TABLE tentativa(
 id INT PRIMARY KEY AUTO_INCREMENT,
-certas INT,
-erradas INT,
+porcentagem_acerto FLOAT,
 data_horario DATETIME DEFAULT NOW(),
 id_usuario INT,
 CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id)
