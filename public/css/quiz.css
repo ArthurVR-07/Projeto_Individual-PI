@@ -70,6 +70,10 @@
     font-weight: 700;
 }
 
+.respostas{
+    width: 100%;
+}
+
 .opcoes{
     display: flex;
     flex-direction: column;
@@ -82,6 +86,8 @@
     margin-top: 20px;
     display: flex;
     gap: 25px;
+    justify-content: center;
+    
 }
 
 .botoes button{
@@ -103,4 +109,35 @@
 
 .botoes button:enabled:hover{
     transform: translateY(-5px);
+    opacity: 0.7;
+}
+
+#alerta_erro{
+    color: #BF1429;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#tela_final{
+    border: 1px solid #BF1429;
+    display: none;
+    flex-direction: column;
+    align-items: start;
+    width: 700px;
+    padding: 25px 35px;
+    gap: 20px;
+    font-family: 'cinzel';
+    background-color: black;
+    align-items: center;
+}
+
+#pontos_usuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#titulo_pontos{
+    font-size: 20px;
+    color: white;
 }

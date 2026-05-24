@@ -45,6 +45,9 @@ function salvar(req, res) {
                 .then(function() {
                     return tentativaModel.atualizarPontuacao(id_usuario, pontos_ganhos);
                 })
+                .then(function() {
+                    res.status(200).json({pontos_ganhos})
+                })
         })
         .catch(function(erro) {
             console.log("Erro ao salvar tentativa:", erro);

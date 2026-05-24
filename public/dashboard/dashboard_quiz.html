@@ -71,8 +71,17 @@
 
                     <div class="botoes">
                         <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                        <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                        <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                    </div>
+                    <div id="alerta_erro"></div>
+                </div>
+            </div>
+
+            <div id="tela_final">
+                <div id="pontos_usuario">
+                    <span id="titulo_pontos">Você fez: <span id="pontos_quiz"></span>pontos</span>
+                    <div class="botoes">
+                        <button onclick="tentarNovamente()" id="btnTentarNovamente">Tentar novamente</button>
+                        <button onclick="window.location.href = 'dashboard_graficos.html'">Dashboard</button>
                     </div>
                 </div>
             </div>
@@ -81,7 +90,6 @@
     </div>
 </body>
 
-<script src="../js/alerta.js"></script>
 <script src="../js/sessao.js"></script>
 <script>
 
@@ -184,8 +192,6 @@
         preencherHTMLcomQuestaoAtual(0)
 
         btnSubmeter.disabled = false
-        btnProx.disabled = true
-        btnTentarNovamente.disabled = true
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -201,6 +207,7 @@
     }
 
     function submeter() {
+        alerta_erro.innerHTML = ``
         const options = document.getElementsByName("option")
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
@@ -208,13 +215,14 @@
         }
 
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            alerta_erro.innerHTML = `Não há alternativas escolhidas. Escolha uma opção.`
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
             habilitarAlternativas(false)
             checarResposta()
+
+            avancar()
         }
+
     }
 
     function habilitarAlternativas(trueOrFalse) {
@@ -226,8 +234,6 @@
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
         desmarcarRadioButtons()
 
         if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
@@ -256,14 +262,11 @@
 
         options.forEach((option) => {
             if (option.checked && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++; certas++
                 
                 respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 1 }) // certa
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                document.getElementById(option.labels[0].id).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 tentativaIncorreta++; erradas++
                 
                 respostasQuestoes.push({ questao_id: numeroDaQuestaoAtual + 1, resultado: 0 }) // errada
@@ -283,9 +286,8 @@
     function finalizarJogo() {
         const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
 
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        btnTentarNovamente.disabled = false
+        jogo.style.display = 'none'
+        tela_final.style.display = 'flex'
 
         fetch("/tentativa/salvar", {
         method: "POST",
@@ -296,9 +298,13 @@
             respostas:  respostasQuestoes
         })
     }).then(function(resposta) {
-        console.log(resposta)
         if (resposta.ok) {
-            console.log("Resultado salvo com sucesso!")
+            resposta.json().then((resposta_json) => {
+                pontos_quiz.innerHTML = resposta_json.pontos_ganhos
+                
+            })
+            
+            
         } else {
             console.error("Erro ao salvar resultado")
         }

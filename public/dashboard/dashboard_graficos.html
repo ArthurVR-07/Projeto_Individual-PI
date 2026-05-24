@@ -78,7 +78,6 @@
     </div>
 </body>
 
-<script src="../js/alerta.js"></script>
 <script src="../js/sessao.js"></script>
 <script>
 
@@ -104,6 +103,7 @@
             });
     }
         
+    var grafico_atual = null;
     function plotarGraficoAcertosPorQuestao(resposta) {
     
         const dados_barra = []
@@ -123,7 +123,10 @@
         }
     
         const grafico_acertos_questao = document.getElementById('porcentagem_acertos_cada_questao')
-      new Chart(grafico_acertos_questao, {
+        if(grafico_atual != null){
+            grafico_atual.destroy();
+        }
+        grafico_atual = new Chart(grafico_acertos_questao, {
             type: 'bar',
             data: {
                 labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
@@ -235,11 +238,18 @@
         posicao.innerHTML = posicao_usuario
     }
 
+    function atualizarDadosDinamicos(){
+        obterDadosAcertosPorQuestao();
+        obterRank();
+    }
+
     window.onload = function() {
         obterDadosAcertosPorQuestao()
         obterDadosUltimoQuiz()
         obterPontuacao()
         obterRank()
+
+        setInterval(atualizarDadosDinamicos, 5000)
     }
 
 </script>
