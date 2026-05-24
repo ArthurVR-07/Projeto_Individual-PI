@@ -138,6 +138,10 @@
 }
 
 #titulo_pontos{
-    font-size: 20px;
+    font-size: 30px;
     color: white;
+}
+
+#pontos_quiz{
+    font-weight: 700;
 }
